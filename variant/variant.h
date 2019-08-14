@@ -204,7 +204,7 @@ struct apply_to_variant<Fn, cons<Head, Tail>, R, L, true> {
     __host__ __device__
     static auto impl(Fn fn,
                      const S& storage,
-                     const char& which) ->
+                     const char& /*which*/) ->
         decltype(fn(std::declval<typename unwrapped<typename S::head_type>::type>()))
     {
         return unwrap_apply(fn, storage);
@@ -320,7 +320,7 @@ void destroy(uninitialized<T>& wrapped) {
 template<typename List, int R=0>
 struct destroy_storage{
     __host__ __device__
-    static void impl(storage<List>& s, int which) {}
+    static void impl(storage<List>& /*s*/, int /*which*/) {}
 };
 
 template<typename Head, typename Tail, int R>
